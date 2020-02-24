@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Колл-центру</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container">
+    <br>
+    <h1>Список заданий на прозвон</h1>
+    <br>
+    <form th:action="@{/search}" name="input_form" method="post">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" th:name="orderNumber" placeholder="Введите номер заказа"
+                   maxlength="9" aria-describedby="button-addon2"/>
+            <div class="input-group-append">
+                <button class="btn btn-primary" id="button-addon2" type="submit">Найти</button>
+            </div>
+        </div>
+    </form>
+    <p style="color:red; font-size:125%" th:text="${dbError}">Текст</p>
+    <br>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th style="width: 25%; text-align:left">№ заказа</th>
+                <th style="width: 75%; text-align:left">Время добавления</th>
+            </tr>
+            <tbody>
+                <tr th:each="task : ${tasksList}">
+                    <td th:text="${task.orderNum}" style="text-align:left">Номер заказа </td>
+                    <td th:text="${#dates.format(task.addingDate, 'dd.MM.yyyy HH:mm')}" style="text-align: left">Дата и время добавления</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <p><a href="/">На главную</a></p>
+</div>
+</body>
+</html>
+
+

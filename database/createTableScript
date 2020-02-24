@@ -1,0 +1,11 @@
+DROP TABLE if exists tasks;
+
+CREATE TABLE tasks (
+  id serial PRIMARY KEY,
+  orderNumber int not null,
+  date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP);
+
+insert into tasks (orderNumber, date) values (123400, '2018-02-03 10:40:59');
+insert into tasks (orderNumber) values (123456);
+insert into tasks (orderNumber) values (123457);
+insert into tasks (orderNumber) values (123458);

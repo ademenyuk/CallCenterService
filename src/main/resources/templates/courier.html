@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <Title>Курьеру</Title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container">
+    <br>
+    <h1>Внести данные о заказе</h1>
+    <br>
+    <p class="lead">Если вы не успеваете доставить заказ, пожалуйста, внесите его номер в поле ниже и нажмите "Не
+        успеваю". Колл-центр свяжется с клиентом и предупредит его. </p>
+    <p style="color:red; font-size:125%" th:text="${dbError}">Текст</p>
+    <br>
+    <form th:action="@{/courier}" name="input_form" method="post">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" oninput="this.value = this.value.replace (/[^0-9+]/g, '')"
+                   th:name="orderNumber"
+                   required placeholder="Введите номер заказа (только цифры)" maxlength="9"
+                   aria-describedby="button-addon2"/>
+            <div class="input-group-append">
+                <button class="btn btn-primary" id="button-addon2" type="submit">Не успеваю</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <p style="color:darkgreen; font-size:125%" th:text="${resultAdded}">Текст</p>
+    <p style="color:red; font-size:125%" th:text="${resultNotAdded}">Текст</p>
+    <footer>
+        <p><a href="/">На главную</a></p>
+    </footer>
+</div>
+</body>
+</html>
